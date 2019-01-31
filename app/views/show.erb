@@ -1,0 +1,18 @@
+<% if @found.nil? %>
+	<% @found = Recipe.all.find_by_id(params["id"]) %>
+<% end %>
+
+<li><%= @found.name %></li>
+
+<ul>	
+	<li><%= @found.ingredients %></li>
+	<li><%= "#{@found.cook_time} minutes" %></li>
+</ul>
+
+<form method="POST" action="/recipes/<%= @found.id %>">
+  <input type="hidden" name="_method" value="DELETE"/>
+  <input type="submit" value="delete" />
+</form>
+
+
+<a href="/recipes/<%= @found.id %>/edit">EDIT</a>
